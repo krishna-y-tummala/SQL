@@ -1,0 +1,16 @@
+To make sure the DML scripts work, please paste the 'Saved Pictures' folder into your D drive.
+The path should be "‪D:\Saved Pictures"
+
+If no D drive exists on your computer, update the DML scripts for Category and Product with whichever path you place
+the saved pictures folder in.
+
+For example:
+INSERT INTO category (categoryID, categoryName, categoryDescription, categoryPicture) 
+VALUES (1,'T-Shirts','T-Shirts great for casual wear, work, parties', (SELECT * FROM OPENROWSET (BULK N'D:Saved Pictures\T-shirt.jpg', SINGLE_BLOB)image));
+ 
+If you paste the Saved Pictures folder into some other destination, the above query should be
+
+INSERT INTO category (categoryID, categoryName, categoryDescription, categoryPicture) 
+VALUES (1,'T-Shirts','T-Shirts great for casual wear, work, parties', (SELECT * FROM OPENROWSET (BULK N'"your saved destination:"\Saved Pictures\T-shirt.jpg', SINGLE_BLOB)image));
+
+Thank you!
